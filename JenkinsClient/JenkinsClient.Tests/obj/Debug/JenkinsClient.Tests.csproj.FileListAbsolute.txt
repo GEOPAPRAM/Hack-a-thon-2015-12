@@ -1,0 +1,5 @@
+C:\work\Hackathon2015.12\JenkinsClient\JenkinsClient.Tests\bin\Debug\JenkinsClient.Tests.pdb
+C:\work\Hackathon2015.12\JenkinsClient\JenkinsClient.Tests\obj\Debug\JenkinsClient.Tests.csprojResolveAssemblyReference.cache
+C:\work\Hackathon2015.12\JenkinsClient\JenkinsClient.Tests\obj\Debug\JenkinsClient.Tests.pdb
+C:\work\Hackathon2015.12\JenkinsClient\JenkinsClient.Tests\bin\Debug\JenkinsClient.Tests.dll
+C:\work\Hackathon2015.12\JenkinsClient\JenkinsClient.Tests\obj\Debug\JenkinsClient.Tests.dll
