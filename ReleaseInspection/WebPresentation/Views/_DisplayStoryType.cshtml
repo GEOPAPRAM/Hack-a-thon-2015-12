@@ -1,0 +1,24 @@
+﻿@using NewVoiceMedia.Tools.ReleaseInspection
+@using NewVoiceMedia.Tools.ReleaseInspection.Model
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<NewVoiceMedia.Tools.ReleaseInspection.Model.IssueType>
+
+@switch (@Model.Name)
+{
+    case "bug":
+        {
+            <span style="font-size: 10px; background-color: lightsalmon; border: black">Bug</span>
+        }
+        break;
+    case "feature":
+    case "story":
+        {
+            <span style="font-size: 10px; background-color: palegreen; border: black">Feature</span>
+        }
+        break;
+    case "chore":
+    case "task":
+        {
+            <span style="font-size: 10px; background-color: paleturquoise; border: black">Chore</span>
+        }
+        break;
+}

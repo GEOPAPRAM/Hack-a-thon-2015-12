@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseInspection", "ReleaseInspection\ReleaseInspection.csproj", "{F74DB612-3C55-4740-8271-436EEE646D8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseInspection.Tests", "ReleaseInspection.Tests\ReleaseInspection.Tests.csproj", "{C4C3C5C1-6F8E-4FF0-8D6E-FE4B7E2071E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPresentation", "WebPresentation\WebPresentation.csproj", "{0EA43F89-0536-4691-B108-7392E49D2C48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5FC90DC9-70BB-45F5-8812-C2A802634718}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPresentation.Tests", "WebPresentation.Tests\WebPresentation.Tests.csproj", "{F9750723-AE15-4B49-8A42-EE602F718845}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F74DB612-3C55-4740-8271-436EEE646D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F74DB612-3C55-4740-8271-436EEE646D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F74DB612-3C55-4740-8271-436EEE646D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F74DB612-3C55-4740-8271-436EEE646D8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4C3C5C1-6F8E-4FF0-8D6E-FE4B7E2071E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4C3C5C1-6F8E-4FF0-8D6E-FE4B7E2071E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4C3C5C1-6F8E-4FF0-8D6E-FE4B7E2071E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4C3C5C1-6F8E-4FF0-8D6E-FE4B7E2071E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA43F89-0536-4691-B108-7392E49D2C48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA43F89-0536-4691-B108-7392E49D2C48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA43F89-0536-4691-B108-7392E49D2C48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA43F89-0536-4691-B108-7392E49D2C48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9750723-AE15-4B49-8A42-EE602F718845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9750723-AE15-4B49-8A42-EE602F718845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9750723-AE15-4B49-8A42-EE602F718845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9750723-AE15-4B49-8A42-EE602F718845}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,34 @@
+﻿@using NewVoiceMedia.Tools.ReleaseInspection.WebPresentation
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<NewVoiceMedia.Tools.ReleaseInspection.Model.ChoresModel>
+<div id="acceptedChores">
+    <h2>Chores signed off by the Product Team</h2>
+    <p><span class="label label-info">Info</span>&nbsp;&nbsp;The Product Team has <em>Accepted</em> these items as being ready to go live.</p>
+    @if (@Model.AcceptedChores.Count == 0)
+    {
+        <div class="alert alert-info">
+            <p>
+                <strong>Info!</strong> No accepted chores exist.
+            </p>
+        </div>
+    }
+    else
+    {
+        @Html.Partial("_DisplayAcceptedWork", @Model.AcceptedChores)
+    }
+</div>
+<div id="inprogresschores">
+    <h2>Chores in progress</h2>
+    <p><span class="label label-info">Info</span>&nbsp;&nbsp;These items are still being developed, so <em>shouldn't</em> be accessible to, nor impact customers.</p>
+    @if (@Model.UnfinishedChores.Count == 0)
+    {
+        <div class="alert alert-info">
+            <p>
+                <strong>Info!</strong> No chores currently in progress.
+            </p>
+        </div>
+    }
+    else
+    {
+        @Html.Partial("_DisplayInProgressWork", @Model.UnfinishedChores)
+    }
+</div>

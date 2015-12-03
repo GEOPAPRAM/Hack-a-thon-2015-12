@@ -1,0 +1,28 @@
+﻿@using NewVoiceMedia.Tools.ReleaseInspection.WebPresentation
+@using NewVoiceMedia.Tools.ReleaseInspection.Model
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<NewVoiceMedia.Tools.ReleaseInspection.Model.UntrackedStoryWork>
+    <table class="table table-striped table-condensed">
+        <thead>
+        <th>Revision</th>
+        <th>Comment</th>
+        <th>Authors</th>    
+        <th>Areas or Paths</th>
+        </thead>
+        @foreach (var item in @Model.Items)
+        {
+            <tr>
+                <td>
+                    @item.Revision<br />
+                </td>
+                <td>
+                    @item.Comment<br />
+                </td>
+                <td>
+                    @item.Author<br />
+                </td>
+                <td>
+                    @Html.Partial("_DisplayPathAndAreas", item.PathsAndAreas)
+                </td>
+            </tr>
+        }
+    </table>
