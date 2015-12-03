@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using JenkinsClient.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models;
 
-namespace JenkinsClient.Converters
+namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Converters
 {
     public class ActionJsonConverter : JsonConverter
     {

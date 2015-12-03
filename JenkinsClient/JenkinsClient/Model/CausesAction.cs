@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace JenkinsClient.Converters
+namespace JenkinsClient.Model
 {
     public class CausesAction : AbstractAction
     {

@@ -1,0 +1,23 @@
+﻿@using NewVoiceMedia.Tools.ReleaseInspection.WebPresentation
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<NewVoiceMedia.Tools.ReleaseInspection.Model.CloudInfoModel>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@Model.CookbookName cookbook revision information on cloud @Model.CloudName</title>
+    <link rel="stylesheet" type="text/css" href="/Content\bootstrap-3.0.0.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/Content/print.css" media="print" />
+    <script type="text/javascript" src="/Content/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="/Content/jquery.tablesorter-2.0.min.js"></script>
+    <script type="text/javascript" src="/Content\bootstrap-3.2.0.min.js"></script>
+    <script type="text/javascript" src="/Content/alltab.js"></script>
+</head>
+<body>
+    <div class="container" id="container">
+        <div>
+            <h1>@Model.CookbookName cookbook revision information on cloud "@Model.CloudName"</h1>
+        </div>
+    </div>
+</body>
+</html>

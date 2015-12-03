@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace JenkinsClient.Converters
+namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models
 {
     public class ParametersAction: AbstractAction
     {

@@ -53,11 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\ActionJsonConverter.cs" />
-    <Compile Include="Converters\AbstractAction.cs" />
-    <Compile Include="Converters\Cause.cs" />
-    <Compile Include="Converters\CausesAction.cs" />
-    <Compile Include="Converters\Parameter.cs" />
-    <Compile Include="Converters\ParametersAction.cs" />
+    <Compile Include="Model\AbstractAction.cs" />
+    <Compile Include="Model\Cause.cs" />
+    <Compile Include="Model\CausesAction.cs" />
+    <Compile Include="Model\Parameter.cs" />
+    <Compile Include="Model\ParametersAction.cs" />
     <Compile Include="Converters\UnixTimestampConverter.cs" />
     <Compile Include="Model\Build.cs" />
     <Compile Include="Model\BuildTarget.cs" />

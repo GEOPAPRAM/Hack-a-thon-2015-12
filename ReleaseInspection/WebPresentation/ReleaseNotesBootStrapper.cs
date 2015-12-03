@@ -49,6 +49,7 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.WebPresentation
             container.Bind<ISourceControl>().To<SourceControl>();
             container.Bind<IStoryRepositoryClient>().To<StoryRepositoryService>();
             container.Bind<IKnownSolutions>().To<KnownSolutions>();
+            container.Bind<ICookbookService>().To<CookbookService>();
         }
 
         private void ConfigureModule<TDeployableComponent,TVersionRetrieverService,TNancyModule>(IKernel container, string identifier)
