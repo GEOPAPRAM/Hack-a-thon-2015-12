@@ -54,6 +54,7 @@
     <Compile Include="Converters\UnixTimestampConverter.cs" />
     <Compile Include="Model\Build.cs" />
     <Compile Include="Model\BuildTarget.cs" />
+    <Compile Include="Model\EnvironmentVariables.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\PromotionDetails.cs" />
     <Compile Include="Model\PromotionStatus.cs" />

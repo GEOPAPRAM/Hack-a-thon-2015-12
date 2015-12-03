@@ -33,6 +33,9 @@ namespace JenkinsClient
 
             //get this build details
             var build = Get<BuildTarget>(string.Concat(promotionDetails.LastSuccessfulBuild.Url, "target/api/json"));
+
+
+            var variables = Get<EnvironmentVariables>(string.Concat(build.Url, "injectedEnvVars/api/json"));
             
             Console.WriteLine();
         }
