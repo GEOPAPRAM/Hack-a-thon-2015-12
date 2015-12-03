@@ -1,0 +1,6 @@
+packages
+obj
+bin
+/ReleaseInspection/WebPresentation.Tests/obj
+/ReleaseInspection/WebPresentation.Tests/bin
+/ReleaseInspection/*.suo

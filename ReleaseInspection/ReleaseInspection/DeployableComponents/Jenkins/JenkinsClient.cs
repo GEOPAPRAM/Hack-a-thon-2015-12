@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Linq;
 using System.Net;
 using EasyHttp.Http;
@@ -23,17 +24,15 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins
             var cloudInfo = new CloudInfo(cloudName, cookbookName);
 
             //get all promotions
-            var promotionStatus = Get<PromotionStatus>(
-                    string.Format(
-                        "https://jenkins.nvminternal.net/job/EnvironmentCookbooks/job/{0}Environment/job/{0}/promotion/api/json",
-                        cookbookName));
+            var promotionStatus = Get<PromotionStatus>(string.Format("{0}/job/EnvironmentCookbooks/job/{1}Environment/job/{1}/promotion/api/json",JenkinsUrl,cookbookName));
 
             //for every cloud get the promotion history
             var promotion = promotionStatus.Promotions.FirstOrDefault(x => x.Name.EndsWith(cloudInfo.CloudName));
 
+            if(promotion==null) throw new Exception("No promotions for specified cloud!");
+
             //get the latest succesful build promoted to the cloud
-            var promotionDetails =
-                Get<PromotionDetails>(string.Concat(promotion.Url, "api/json?tree=lastSuccessfulBuild[url,number,timestamp]"));
+            var promotionDetails = Get<PromotionDetails>(string.Concat(promotion.Url, "api/json?tree=lastSuccessfulBuild[url,number,timestamp]"));
 
             //get this build details
             var build = Get<BuildTarget>(string.Concat(promotionDetails.LastSuccessfulBuild.Url, "target/api/json"), new ActionJsonConverter());
@@ -46,9 +45,7 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins
             //Try to find our Application cookbook link and build number
             var appCookbookCause = causes.Causes.First(c => c.UpstreamProject.Contains("ApplicationCookbooks"));
 
-            var changes =
-                Get<Change>(string.Concat(JenkinsUrl, appCookbookCause.UpstreamUrl, appCookbookCause.UpstreamBuild,
-                    "/api/json?tree=changeSet[items[*],revisions[*]]"));
+            var changes = Get<Change>(string.Concat(JenkinsUrl, "/", appCookbookCause.UpstreamUrl, appCookbookCause.UpstreamBuild, "/api/json?tree=changeSet[items[*],revisions[*]]"));
 
             var variables = Get<EnvironmentVariables>(string.Concat(build.Url, "injectedEnvVars/api/json"));
 

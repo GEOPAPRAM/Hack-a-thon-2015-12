@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Ninject;
 using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents;
 using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.CallCentre;
 using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.IVR;
+using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins;
 using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.WAF;
 using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.WFM;
 using NewVoiceMedia.Tools.ReleaseInspection.Model;
@@ -50,6 +52,8 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.WebPresentation
             container.Bind<IStoryRepositoryClient>().To<StoryRepositoryService>();
             container.Bind<IKnownSolutions>().To<KnownSolutions>();
             container.Bind<ICookbookService>().To<CookbookService>();
+            container.Bind<IJenkinsClient>().To<JenkinsClient>()
+                     .WithConstructorArgument("jenkinsUrl",ConfigurationManager.AppSettings["JenkinsUrl"]);
         }
 
         private void ConfigureModule<TDeployableComponent,TVersionRetrieverService,TNancyModule>(IKernel container, string identifier)

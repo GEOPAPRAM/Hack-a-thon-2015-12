@@ -16,6 +16,7 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Model
         IEnumerable<SourceChange> GetChanges(string path, long fromRevision, long toRevision);
         IEnumerable<SourceChange> GetChanges(string path, DateTimeOffset from, DateTimeOffset to);
         IEnumerable<SourceChange> GetChangesSince(string path, DateTime fromDate);
+        IEnumerable<SourceChange> GetChangesSince(string path, long fromRevision);
     }
 
     public class SourceControl : ISourceControl
@@ -57,6 +58,16 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Model
         {
             var pathUri = new Uri(path);
             var args = new SvnLogArgs { Range = new SvnRevisionRange(new SvnRevision(fromDate), new SvnRevision(DateTime.Today)) };
+
+
+            return GetSourceControlHistory(pathUri, args);
+        }
+
+        public IEnumerable<SourceChange> GetChangesSince(string path, long fromRevision)
+        {
+            var pathUri = new Uri(path);
+            var args = new SvnLogArgs { Range = new SvnRevisionRange(new SvnRevision(fromRevision), new SvnRevision(SvnRevisionType.Head)) };
+
 
             return GetSourceControlHistory(pathUri, args);
         }
