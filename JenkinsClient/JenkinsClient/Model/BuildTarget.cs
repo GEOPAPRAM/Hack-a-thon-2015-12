@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using JenkinsClient.Converters;
+using Newtonsoft.Json;
 
 namespace JenkinsClient.Model
 {
@@ -10,5 +12,7 @@ namespace JenkinsClient.Model
         public int Number { get; set; }
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
+        [JsonProperty("actions", NullValueHandling = NullValueHandling.Ignore)]
+        public List<AbstractAction> Actions { get; set; }
     }
 }

@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,13 +52,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\ActionJsonConverter.cs" />
+    <Compile Include="Converters\AbstractAction.cs" />
+    <Compile Include="Converters\Cause.cs" />
+    <Compile Include="Converters\CausesAction.cs" />
+    <Compile Include="Converters\Parameter.cs" />
+    <Compile Include="Converters\ParametersAction.cs" />
     <Compile Include="Converters\UnixTimestampConverter.cs" />
     <Compile Include="Model\Build.cs" />
     <Compile Include="Model\BuildTarget.cs" />
+    <Compile Include="Model\Change.cs" />
+    <Compile Include="Model\ChangeSet.cs" />
+    <Compile Include="Model\CloudInfo.cs" />
+    <Compile Include="Model\CookbookInfo.cs" />
     <Compile Include="Model\EnvironmentVariables.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\PromotionDetails.cs" />
     <Compile Include="Model\PromotionStatus.cs" />
+    <Compile Include="Model\Revision.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
