@@ -109,10 +109,10 @@
     <Compile Include="DeployableComponents\WAF\WafVersionRetrieverService.cs" />
     <Compile Include="DeployableComponents\WFM\WFM.cs" />
     <Compile Include="DeployableComponents\WFM\WFMCookbookPathsByArea.cs" />
-    <Compile Include="DeployableComponents\WFM\WFMCookbooks.cs" />
     <Compile Include="DeployableComponents\WFM\WfmPathsByArea.cs" />
     <Compile Include="DeployableComponents\WFM\WfmVersionRetrieverService.cs" />
-    <Compile Include="Model\CloudInfo.cs" />
+    <Compile Include="DeployableComponents\Jenkins\Models\CloudInfo.cs" />
+    <Compile Include="Model\CookbookChangesModel.cs" />
     <Compile Include="Model\IssueStatus.cs" />
     <Compile Include="Model\IssueType.cs" />
     <Compile Include="Model\ChoresModel.cs" />
@@ -131,6 +131,7 @@
     <Compile Include="Service\IStoryRepositoryClient.cs" />
     <Compile Include="Service\JiraClient.cs" />
     <Compile Include="Service\PivotalTrackerErrorDetectionStrategy.cs" />
+    <Compile Include="Service\ReleaseServiceExtensions.cs" />
     <Compile Include="Service\StoryRepositoryService.cs" />
     <Compile Include="StoryWorkExtensions.cs" />
     <Compile Include="Model\StoryWorkList.cs" />

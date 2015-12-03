@@ -4,6 +4,6 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Service
 {
     public interface ICookbookService
     {
-        CloudInfo PopulateCloudInfo(string cloudName, string cookbookName);
+        CookbookChangesModel PopulateCloudInfo(string cloudName, string cookbookName);
     }
 }

@@ -35,37 +35,33 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Service
 
             foreach (var sourceChange in changes)
             {
-                var storyId = StoryIdExtractor.ExtractPivotalId(sourceChange.Comments);
-                
+                var storyId = sourceChange.Comments.TryExtractStoryId();
+
                 if (storyId != String.Empty)
                 {
-                    StoreStoryWork(changesByStory, storyId, sourceChange);
+                    var storyWork = changesByStory.ContainsKey(storyId)
+                                    ? changesByStory[storyId]
+                                    : changesByStory[storyId] = _storyWorkFactory.Create(new Story { Id = storyId }, _deployableComponent.ProductAreaPathMap);
+
+                    storyWork.StoreStoryWork(storyId, sourceChange);
                 }
                 else
                 {
-                    var jiraStoryId = StoryIdExtractor.ExtractJiraId(sourceChange.Comments);
-                    if (jiraStoryId != String.Empty)
-                    {
-                        StoreStoryWork(changesByStory, jiraStoryId, sourceChange);
-                    }
-                    else
-                    {
-                        StoreUntrackedChanges(untrackedWork, sourceChange);
-                    }
+                    sourceChange.StoreUntrackedChanges(untrackedWork);
                 }
             }
 
             Parallel.ForEach(changesByStory.Values.ToList(), GetStoryDetails);
 
-            var stories = ExtractFeaturesFromChanges(changesByStory);
-            var chores = ExtractChoresFromChanges(changesByStory);
-            
-            var acceptedStories = FilterAcceptedWork(stories);
-            var unfinishedStories = FilterWorkInProgress(stories);
+            var stories = changesByStory.ExtractFeaturesFromChanges();
+            var chores = changesByStory.ExtractChoresFromChanges();
+
+            var acceptedStories = stories.FilterAcceptedWork();
+            var unfinishedStories = stories.FilterWorkInProgress();
 
             return new ReleaseModel
             {
-                PreviousVersion = fromRevision.ToString(CultureInfo.InvariantCulture), 
+                PreviousVersion = fromRevision.ToString(CultureInfo.InvariantCulture),
                 Version = toRevision.ToString(CultureInfo.InvariantCulture),
                 AcceptedWork = acceptedStories,
                 UnfinishedWork = unfinishedStories,
@@ -79,10 +75,10 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Service
             var fromRevision = _deployableComponent.GetRevisionForVersion(fromVersion);
             var toRevision = _deployableComponent.GetRevisionForVersion(toVersion);
             var releaseModel = PopulateContentsForRevisions(fromRevision, toRevision);
-            
+
             releaseModel.PreviousVersion = fromVersion;
             releaseModel.Version = toVersion;
-            
+
             return releaseModel;
         }
 
@@ -94,55 +90,6 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Service
             return model;
         }
 
-        private static StoryWorkList FilterWorkInProgress(IEnumerable<StoryWork> work)
-        {
-            return work.Where(item => item.Story.Status.Name != "accepted" && item.Story.Status.Name.ToLower() != "done")
-                .OrderBy(item => item.Story.StoryType.Id)
-                .ToStoryWorkList();
-        }
-
-        private static StoryWorkList FilterAcceptedWork(IEnumerable<StoryWork> work)
-        {
-            return work.Where(item => item.Story.Status.Name == "accepted" || item.Story.Status.Name.ToLower() == "done")
-                .OrderBy(item => item.Story.StoryType.Id)
-                .ToStoryWorkList();
-        }
-
-        private static List<StoryWork> ExtractFeaturesFromChanges(Dictionary<string, StoryWork> changesById)
-        {
-            return changesById.Select(item => item.Value)
-                .Where(item => item.Story.StoryType.Name != "chore" && item.Story.StoryType.Name != "task")
-                .ToList();
-        }
-
-        private static ChoresModel ExtractChoresFromChanges(Dictionary<string, StoryWork> changesById)
-        {
-            var chores = changesById.Select(item => item.Value).Where(item => item.Story.StoryType.Name == "chore" || item.Story.StoryType.Name == "task").ToList();
-            var acceptedChores = FilterAcceptedWork(chores);
-            var unfinishedChores = FilterWorkInProgress(chores);
-
-            return new ChoresModel
-            {
-                AcceptedChores = acceptedChores,
-                UnfinishedChores = unfinishedChores
-            };
-        }
-
-        private void StoreStoryWork(IDictionary<string, StoryWork> changesByStory, string storyId, SourceChange sourceChange)
-        {
-            if (!changesByStory.ContainsKey(storyId))
-            {
-                changesByStory[storyId] = _storyWorkFactory.Create(new Story { Id = storyId }, _deployableComponent.ProductAreaPathMap);
-            }
-
-            changesByStory[storyId].MergeChanges(sourceChange);
-        }
-
-        private void StoreUntrackedChanges(UntrackedStoryWork untrackedWork, SourceChange sourceChange)
-        {
-            untrackedWork.MergeChanges(sourceChange);
-        }
-
         private void GetStoryDetails(StoryWork storyWork)
         {
             var story = new Story
@@ -150,7 +97,7 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Service
                     Id = storyWork.Story.Id,
                     Status = new IssueStatus { Name = PivotalFailureErrorMessage },
                     Title = PivotalFailureErrorMessage,
-                    StoryType = new IssueType { Id = (int) StoryType.PivotalError, Name = StoryType.PivotalError.ToString() }
+                    StoryType = new IssueType { Id = (int)StoryType.PivotalError, Name = StoryType.PivotalError.ToString() }
                 };
 
             try

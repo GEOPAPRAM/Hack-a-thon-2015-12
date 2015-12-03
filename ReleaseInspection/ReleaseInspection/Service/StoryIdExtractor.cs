@@ -45,5 +45,13 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Service
 
             return String.Empty;
         }
+
+        public static string TryExtractStoryId(this string comments)
+        {
+            var storyId = ExtractPivotalId(comments);
+            if (storyId == string.Empty)
+                storyId = ExtractJiraId(comments);
+            return storyId;
+        }
     }
 }

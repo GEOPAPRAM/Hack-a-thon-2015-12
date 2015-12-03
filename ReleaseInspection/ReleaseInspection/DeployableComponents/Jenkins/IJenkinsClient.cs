@@ -1,4 +1,5 @@
-﻿using NewVoiceMedia.Tools.ReleaseInspection.Model;
+﻿using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models;
+using NewVoiceMedia.Tools.ReleaseInspection.Model;
 
 namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins
 {

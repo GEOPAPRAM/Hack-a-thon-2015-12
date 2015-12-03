@@ -1,7 +1,6 @@
 ﻿using System.Linq;
-using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models;
 
-namespace NewVoiceMedia.Tools.ReleaseInspection.Model
+namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models
 {
     public class CloudInfo
     {

@@ -6,7 +6,7 @@ using EasyHttp.Http;
 using Newtonsoft.Json;
 using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Converters;
 using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models;
-using CloudInfo = NewVoiceMedia.Tools.ReleaseInspection.Model.CloudInfo;
+using CloudInfo = NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models.CloudInfo;
 
 namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins
 {
