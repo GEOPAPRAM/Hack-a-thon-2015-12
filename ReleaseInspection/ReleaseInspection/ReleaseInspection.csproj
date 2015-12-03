@@ -85,6 +85,8 @@
     <Compile Include="DeployableComponents\IVR\IvrVersionRetrieverService.cs" />
     <Compile Include="DeployableComponents\Jenkins\Converters\ActionJsonConverter.cs" />
     <Compile Include="DeployableComponents\Jenkins\Converters\UnixTimestampConverter.cs" />
+    <Compile Include="DeployableComponents\Jenkins\IJenkinsClient.cs" />
+    <Compile Include="DeployableComponents\Jenkins\JenkinsClient.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\AbstractAction.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\Build.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\BuildTarget.cs" />
@@ -92,7 +94,7 @@
     <Compile Include="DeployableComponents\Jenkins\Models\CausesAction.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\Change.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\ChangeSet.cs" />
-    <Compile Include="DeployableComponents\Jenkins\Models\CloudInfo.cs" />
+    <Compile Include="DeployableComponents\Jenkins\Models\CloudCookbooksInfo.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\CookbookInfo.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\EnvironmentVariables.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\Item.cs" />
@@ -106,9 +108,11 @@
     <Compile Include="DeployableComponents\WAF\WafPathsByArea.cs" />
     <Compile Include="DeployableComponents\WAF\WafVersionRetrieverService.cs" />
     <Compile Include="DeployableComponents\WFM\WFM.cs" />
+    <Compile Include="DeployableComponents\WFM\WFMCookbookPathsByArea.cs" />
+    <Compile Include="DeployableComponents\WFM\WFMCookbooks.cs" />
     <Compile Include="DeployableComponents\WFM\WfmPathsByArea.cs" />
     <Compile Include="DeployableComponents\WFM\WfmVersionRetrieverService.cs" />
-    <Compile Include="Model\CloudInfoModel.cs" />
+    <Compile Include="Model\CloudInfo.cs" />
     <Compile Include="Model\IssueStatus.cs" />
     <Compile Include="Model\IssueType.cs" />
     <Compile Include="Model\ChoresModel.cs" />

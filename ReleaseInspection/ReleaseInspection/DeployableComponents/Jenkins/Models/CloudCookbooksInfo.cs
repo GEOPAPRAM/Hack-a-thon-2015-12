@@ -3,11 +3,11 @@ using System.Collections.ObjectModel;
 
 namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models
 {
-    public class CloudInfo
+    public class CloudCookbooksInfo
     {
         private readonly List<CookbookInfo> _cookbooks;
 
-        public CloudInfo(string cloudName)
+        public CloudCookbooksInfo(string cloudName)
         {
             CloudName = cloudName;
             _cookbooks = new List<CookbookInfo>();

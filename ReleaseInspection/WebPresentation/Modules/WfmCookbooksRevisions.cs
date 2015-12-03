@@ -11,7 +11,7 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.WebPresentation.Modules
             Get["/"] = parameters =>
             {
                 var cloud = Request.Query["cloud"];
-                var cookbook = Request.Query["cookbook"];
+                var cookbook = Request.Query["cookbook"]; 
 
                 var model = cookbookService.PopulateCloudInfo(cloud, cookbook);
 

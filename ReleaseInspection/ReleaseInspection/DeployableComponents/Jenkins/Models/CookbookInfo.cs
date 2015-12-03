@@ -12,5 +12,6 @@
         public string EnvBuildVersion { get; set; }
         public string AppBuildVersion { get; set; }
         public ChangeSet Changes { get; set; }
+        public Cause AppCookbook { get; set; }
     }
 }
