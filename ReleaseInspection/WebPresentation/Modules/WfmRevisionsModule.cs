@@ -21,7 +21,7 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.WebPresentation.Modules
                 var model = releaseService.PopulateContentsForRevisions(startRevision, endRevision);
                 if (model != null)
                 {
-                    model.DeploymentInfo = _jenkinsClient.GetDeploymentInfoForClouds(new[] {"Cloud 4", "Cloud 11", "Cloud 12", "Cloud 17"}, new[] {"PerformWebServer", "PerformWorkerServer"}, WFM.Identifier);
+                    model.DeploymentInfo = _jenkinsClient.GetDeploymentInfoForClouds(new[] { "Cloud 4", "Cloud 11", "Cloud 12", "Cloud 17"}, new[] {"PerformWebServer", "PerformWorkerServer"}, WFM.Identifier);
                 }
 
 
