@@ -64,26 +64,27 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins
                     var promotion = GetPromotionForCloud(promotionStatus, cloud);
 
                     if (promotion == null) continue;
+
+                    var cookbookInfoBase = new CookbookInfoBase(cookbook);
                     try
                     {
                         var promotionDetails = GetPromotionDetails(promotion);
                         var build = GetBuildInfo(promotionDetails);
                         var variables = GetBuildEnvVariables(build);
 
-                        var cookbookInfoBase = new CookbookInfoBase(cookbook)
-                        {
-                            Description = build.DisplayName,
-                            EnvBuildVersion = variables.Variables["BUILD_VERSION"],
-                            AppBuildVersion = variables.Variables["COOKBOOK_VERSION"],
-                            AppCookbookName = variables.Variables["CHILD_COOKBOOK"]
-                        };
 
-                        deploymentInfo.AddCloudCookbookInfo(cloud, cookbookInfoBase);
+                        cookbookInfoBase.Description = build.DisplayName;
+                        cookbookInfoBase.EnvBuildVersion = variables.Variables["BUILD_VERSION"];
+                        cookbookInfoBase.AppBuildVersion = variables.Variables["COOKBOOK_VERSION"];
+                        cookbookInfoBase.AppCookbookName = variables.Variables["CHILD_COOKBOOK"];
+
+                        
                     }
                     catch
                     {
-                        
+                        cookbookInfoBase.EnvBuildVersion = string.Empty;
                     }
+                    deploymentInfo.AddCloudCookbookInfo(cloud, cookbookInfoBase);
                 }
             }
 

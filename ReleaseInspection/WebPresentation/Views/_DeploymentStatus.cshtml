@@ -1,35 +1,40 @@
-﻿@using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models
+﻿@using System.Linq
+@using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Models
 @using NewVoiceMedia.Tools.ReleaseInspection.WebPresentation
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<NewVoiceMedia.Tools.ReleaseInspection.Model.DeploymentInfo>
 <div id="acceptedChores">
     <h2>Clouds deployment status</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Cookbook</th>
-                @foreach (var cloud in @Model.CloudCookbooksInfo.Keys)
-                {
-                    <th>@cloud</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var cloud in @Model.CloudCookbooksInfo.Keys)
+    <table class="table table-bordered table-striped">
+        @{ var fistCloud = @Model.CloudCookbooksInfo.Keys.First();}
+        <tr>
+            <th>Clouds</th>
+            @foreach (var cookbook in @Model.CloudCookbooksInfo[@fistCloud].Keys)
             {
-                foreach (var cookbook in @Model.CloudCookbooksInfo[cloud].Keys)
+                <td><label>@cookbook</label></td>
+            }
+        </tr>
+        @foreach (var cloud in @Model.CloudCookbooksInfo.Keys)
+        {
+            <tr>
+                <td>@cloud</td>
+                @foreach (var cookbook in @Model.CloudCookbooksInfo[cloud].Keys)
                 {
-                    <tr>
-                        @{ var info = Model.CloudCookbooksInfo[cloud][cookbook]; }
-                        <td><label>@cookbook</label></td>
-                        <td>
-                            <a href="@string.Concat(Model.CookbookDetailsBaseUrl,string.Format("?cloud={0}&cookbook={1}",cloud,cookbook))">
+                    var info = Model.CloudCookbooksInfo[cloud][cookbook];
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(info.EnvBuildVersion))
+                        {
+                            <a href="@string.Concat(Model.CookbookDetailsBaseUrl, string.Format("?cloud={0}&cookbook={1}", cloud, cookbook))">
                                 @info.EnvBuildVersion<br />
                                 @info.AppCookbookName (@info.AppBuildVersion)
                             </a>
-                        </td>
-                    </tr>
+                        }
+                        else
+                        {
+                            <i>N/A</i>
+                        }
+                    </td>
                 }
-            }
-        </tbody>
+            </tr>
+        }
     </table>
 </div>
