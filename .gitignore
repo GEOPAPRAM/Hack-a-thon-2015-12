@@ -4,3 +4,4 @@ bin
 /ReleaseInspection/WebPresentation.Tests/obj
 /ReleaseInspection/WebPresentation.Tests/bin
 /ReleaseInspection/*.suo
+/JenkinsClient/*.suo
