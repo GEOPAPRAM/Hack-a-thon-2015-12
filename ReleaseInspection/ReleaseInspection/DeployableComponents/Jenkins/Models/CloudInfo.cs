@@ -14,9 +14,9 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Mod
 
         public Revision GetAppCookbookRevision()
         {
-            if (Cookbook == null || Cookbook.AppCookbook==null || Cookbook.AppCookbook.Name.Length==0 || Cookbook.Changes.Revisions.Count == 0) return null;
+            if (Cookbook == null || Cookbook.AppCookbookName.Length==0 || Cookbook.Changes.Revisions.Count == 0) return null;
 
-            return Cookbook.Changes.Revisions.Where(x => x.Module.Contains(Cookbook.AppCookbook.Name))
+            return Cookbook.Changes.Revisions.Where(x => x.Module.Contains(Cookbook.AppCookbookName))
                                    .Select(x=>x)
                                    .FirstOrDefault();
         }

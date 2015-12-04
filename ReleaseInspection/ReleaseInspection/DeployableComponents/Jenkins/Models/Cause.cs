@@ -5,7 +5,6 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.Jenkins.Mod
     [JsonObject(MemberSerialization.OptIn)]
     public class Cause
     {
-        public string Name { get; set; }
         [JsonProperty("upstreamBuild")]
         public int UpstreamBuild { get; set; }
         [JsonProperty("upstreamProject")]

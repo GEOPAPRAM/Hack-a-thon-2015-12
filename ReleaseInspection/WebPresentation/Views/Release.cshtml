@@ -1,102 +1,115 @@
-﻿@using NewVoiceMedia.Tools.ReleaseInspection.WebPresentation
+﻿@using NewVoiceMedia.Tools.ReleaseInspection.DeployableComponents.WFM
+@using NewVoiceMedia.Tools.ReleaseInspection.WebPresentation
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<NewVoiceMedia.Tools.ReleaseInspection.Model.ReleaseModel>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Changes between Release Candidate @Model.Version and @Model.PreviousVersion @if (@Model.ComparingToLive) {<text>(Live)</text>}</title>
-        <link rel="stylesheet" type="text/css" href="/Content\bootstrap-3.0.0.min.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="/Content/print.css" media="print" />
-        <script type="text/javascript" src="/Content/jquery-2.1.0.min.js"></script>
-        <script type="text/javascript" src="/Content/jquery.tablesorter-2.0.min.js"></script>
-        <script type="text/javascript" src="/Content\bootstrap-3.2.0.min.js"></script>
-        <script type="text/javascript" src="/Content/alltab.js"></script>
-        <script language="javascript">
-            
-                function toggle(classIdentifier) {
-                    
-                    var elements = $('.' + classIdentifier);
-                    
-                    for (var i = 0; i < elements.length; i++) {
-                        if (elements[i].style.display == "block") {
-                            elements[i].style.display = "none";
-                        } else {
-                            elements[i].style.display = "block";
-                        }
-                    }
+<head>
+    <title>
+        Changes between Release Candidate @Model.Version and @Model.PreviousVersion @if (@Model.ComparingToLive)
+        {<text>(Live)</text>}
+    </title>
+    <link rel="stylesheet" type="text/css" href="/Content\bootstrap-3.0.0.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/Content/print.css" media="print" />
+    <script type="text/javascript" src="/Content/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="/Content/jquery.tablesorter-2.0.min.js"></script>
+    <script type="text/javascript" src="/Content\bootstrap-3.2.0.min.js"></script>
+    <script type="text/javascript" src="/Content/alltab.js"></script>
+    <script language="javascript">
+
+        function toggle(classIdentifier) {
+
+            var elements = $('.' + classIdentifier);
+
+            for (var i = 0; i < elements.length; i++) {
+                if (elements[i].style.display == "block") {
+                    elements[i].style.display = "none";
+                } else {
+                    elements[i].style.display = "block";
                 }
-            
-        </script>
-     </head>
-   <body>
-       <div class="container" id="container">
-           <div>
-               <h1>
-                   Changes between Release Candidate @Model.Version and @Model.PreviousVersion @if (@Model.ComparingToLive)
-                   {<text>(Live)</text>}
-               </h1>
-           </div>
-           <div id="tabs">
-               <ul class="nav nav-tabs" role="tablist">
-                   <li><a data-toggle="tab" id="allchanges">All Changes</a></li>
-                   <li class="active"><a data-toggle="tab" href="#product" role="tab">Product</a></li>
-                   <li><a data-toggle="tab" href="#chores" role="tab">Chores</a></li>
-               </ul>
-               <div class="tab-content">
-                   <div class="tab-pane active" id="product">
-                       <div>
-                           <h2>Changes signed off by the Product Team</h2>
-                           <p><span class="label label-info">Info</span>&nbsp;&nbsp;The Product Team has <em>Accepted</em> these items as being ready to go live.</p>
-                           @if (@Model.AcceptedWork.Count == 0)
-                           {
-                               <div class="alert alert-warning">
-                                   <p><strong>Warning!</strong> There is no accepted product work present in this release.</p>
-                               </div>
-                           }
-                           else
-                           {
-                               @Html.Partial("_DisplayAcceptedWork", @Model.AcceptedWork)
-                           }
+            }
+        }
 
-                       </div>
-                       <div>
-                           <h2>Work in progress</h2>
-                           <p><span class="label label-info">Info</span>&nbsp;&nbsp;These items are still being developed, so <em>shouldn't</em> be accessible to, nor impact customers.</p>
-                           @if (@Model.UnfinishedWork.Count == 0)
-                           {
-                               <div class="alert alert-success">
-                                   <p>There is no more work in progress for this release.</p>
-                               </div>
-                           }
-                           else
-                           {
-                               @Html.Partial("_DisplayInProgressWork", @Model.UnfinishedWork)
-                           }
+    </script>
+</head>
+<body>
+    <div class="container" id="container">
+        <div>
+            <h1>
+                Changes between Release Candidate @Model.Version and @Model.PreviousVersion @if (@Model.ComparingToLive)
+                {<text>(Live)</text>}
+            </h1>
+        </div>
+        <div id="tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li><a data-toggle="tab" id="allchanges">All Changes</a></li>
+                <li class="active"><a data-toggle="tab" href="#product" role="tab">Product</a></li>
+                <li><a data-toggle="tab" href="#chores" role="tab">Chores</a></li>
+                @if (@Model.DeploymentInfo != null)
+                {
+                    <li><a data-toggle="tab" href="#deploy" role="tab">Deployment</a></li>
+                }
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="product">
+                    <div>
+                        <h2>Changes signed off by the Product Team</h2>
+                        <p><span class="label label-info">Info</span>&nbsp;&nbsp;The Product Team has <em>Accepted</em> these items as being ready to go live.</p>
+                        @if (@Model.AcceptedWork.Count == 0)
+                        {
+                            <div class="alert alert-warning">
+                                <p><strong>Warning!</strong> There is no accepted product work present in this release.</p>
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.Partial("_DisplayAcceptedWork", @Model.AcceptedWork)
+                        }
 
-                       </div>
-                   </div>
-                   <div class="tab-pane" id="chores">
-                       @Html.Partial("_DisplayChores", @Model.Chores)
-                   </div>
-                   <div>
-                       <h2>Changes not traceable to a story/defect/chore</h2>
-                       @if (@Model.UntrackedWork.Items.Count == 0)
-                       {
-                           <div class="alert alert-success">
-                               <p>
-                                   <strong>Hurrah!</strong> No untracked work is present in this release!
-                               </p>
-                           </div>
-                       }
-                       else
-                       {
-                           @Html.Partial("_DisplayUntrackedWork", @Model.UntrackedWork)
-                       }
-                   </div>
-               </div>
+                    </div>
+                    <div>
+                        <h2>Work in progress</h2>
+                        <p><span class="label label-info">Info</span>&nbsp;&nbsp;These items are still being developed, so <em>shouldn't</em> be accessible to, nor impact customers.</p>
+                        @if (@Model.UnfinishedWork.Count == 0)
+                        {
+                            <div class="alert alert-success">
+                                <p>There is no more work in progress for this release.</p>
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.Partial("_DisplayInProgressWork", @Model.UnfinishedWork)
+                        }
 
-           </div>
-       </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="chores">
+                    @Html.Partial("_DisplayChores", @Model.Chores)
+                </div>
+                @if (@Model.DeploymentInfo != null)
+                {   <div class="tab-pane" id="deploy">
+                        @Html.Partial("_DeploymentStatus", @Model.DeploymentInfo)
+                    </div>
+                }
+                <div>
+                    <h2>Changes not traceable to a story/defect/chore</h2>
+                    @if (@Model.UntrackedWork.Items.Count == 0)
+                    {
+                        <div class="alert alert-success">
+                            <p>
+                                <strong>Hurrah!</strong> No untracked work is present in this release!
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.Partial("_DisplayUntrackedWork", @Model.UntrackedWork)
+                    }
+                </div>
+            </div>
 
-  </body>
+        </div>
+    </div>
+
+</body>
 </html>

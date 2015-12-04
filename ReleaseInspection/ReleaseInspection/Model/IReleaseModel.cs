@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace NewVoiceMedia.Tools.ReleaseInspection.Model
+﻿namespace NewVoiceMedia.Tools.ReleaseInspection.Model
 {
     public interface IReleaseModel
     {
@@ -11,5 +9,6 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Model
         StoryWorkList UnfinishedWork { get; set; }
         UntrackedStoryWork UntrackedWork { get; }
         ChoresModel Chores { get; set; }
+        DeploymentInfo DeploymentInfo { get; set; }
     }
 }

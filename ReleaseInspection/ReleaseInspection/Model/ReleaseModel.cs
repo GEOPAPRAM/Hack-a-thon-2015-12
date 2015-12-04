@@ -9,5 +9,6 @@
         public StoryWorkList UnfinishedWork { get; set; }
         public UntrackedStoryWork UntrackedWork { get; set; }
         public ChoresModel Chores { get; set; }
+        public DeploymentInfo DeploymentInfo { get; set; }
     }
 }

@@ -14,9 +14,9 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Service
     public class CookbookService : ICookbookService
     {
         private readonly IJenkinsClient _jenkinsClient;
-        private ISourceControl _sourceControl;
-        private IStoryWorkFactory _storyWorkFactory;
-        private IStoryRepositoryClient _storyRepositoryClient;
+        private readonly ISourceControl _sourceControl;
+        private readonly IStoryWorkFactory _storyWorkFactory;
+        private readonly IStoryRepositoryClient _storyRepositoryClient;
         public IProductPathAreaMap ProductPathAreaMap;
 
         public CookbookService(IJenkinsClient jenkinsClient, ISourceControl sourceControl, IStoryWorkFactory storyWorkFactory, IStoryRepositoryClient storyRepositoryClient)
@@ -30,7 +30,7 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.Service
 
         public CookbookChangesModel PopulateCloudInfo(string cloudName, string cookbookName)
         {
-            var model = new CookbookChangesModel(cloudName);
+            var model = new CookbookChangesModel(cloudName, cookbookName);
             var changesByStory = new Dictionary<string, StoryWork>();
             var cloudInfo = _jenkinsClient.GetCloudInformation(cloudName, cookbookName);
             var untrackedWork = _storyWorkFactory.Create(ProductPathAreaMap);

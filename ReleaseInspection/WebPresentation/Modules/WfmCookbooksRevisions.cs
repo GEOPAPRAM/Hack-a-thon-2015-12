@@ -6,7 +6,7 @@ namespace NewVoiceMedia.Tools.ReleaseInspection.WebPresentation.Modules
 {
     public class WfmCookbooksRevisions : NancyModule
     {
-        public WfmCookbooksRevisions(ICookbookService cookbookService) : base("/cookbooks/"+ WFM.Identifier)
+        public WfmCookbooksRevisions(ICookbookService cookbookService) : base("/revisions/cookbooks/"+ WFM.Identifier)
         {
             Get["/"] = parameters =>
             {

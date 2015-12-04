@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>@Model.Description on cloud "@Model.CloudName"</title>
+    <title>@Model.EnvCookbookName @Model.Description on "@Model.CloudName"</title>
     <link rel="stylesheet" type="text/css" href="/Content\bootstrap-3.0.0.min.css" media="all" />
     <link rel="stylesheet" type="text/css" href="/Content/print.css" media="print" />
     <script type="text/javascript" src="/Content/jquery-2.1.0.min.js"></script>
@@ -33,7 +33,7 @@
 <body>
     <div class="container" id="container">
         <div>
-            <h1>@Model.Description on cloud "@Model.CloudName"</h1>
+            <h2>@Model.EnvCookbookName @Model.Description on "@Model.CloudName"</h2>
         </div>
         <div id="tabs">
             <ul class="nav nav-tabs" role="tablist">

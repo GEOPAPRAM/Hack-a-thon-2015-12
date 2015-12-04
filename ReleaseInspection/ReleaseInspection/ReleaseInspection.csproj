@@ -85,6 +85,8 @@
     <Compile Include="DeployableComponents\IVR\IvrVersionRetrieverService.cs" />
     <Compile Include="DeployableComponents\Jenkins\Converters\ActionJsonConverter.cs" />
     <Compile Include="DeployableComponents\Jenkins\Converters\UnixTimestampConverter.cs" />
+    <Compile Include="DeployableComponents\Jenkins\Models\CookbookInfoBase.cs" />
+    <Compile Include="Model\DeploymentInfo.cs" />
     <Compile Include="DeployableComponents\Jenkins\IJenkinsClient.cs" />
     <Compile Include="DeployableComponents\Jenkins\JenkinsClient.cs" />
     <Compile Include="DeployableComponents\Jenkins\Models\AbstractAction.cs" />
